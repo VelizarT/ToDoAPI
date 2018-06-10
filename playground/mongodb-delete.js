@@ -28,6 +28,6 @@ MongoClient.connect('mongodb://localhost:27017/ToDoApp', (err, client) => {
     });
 
 
-    db.collection('Todos');
+    client.close();
 
 });
