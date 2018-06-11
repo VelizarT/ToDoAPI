@@ -33,7 +33,7 @@ app.get('/todos', (req, res) => {
 //GET /todos/someid; :id creates an id variable on the req object
 //req.params is an object with key-value pairs: id:the passed id
 app.get('/todos/:id', (req, res) => {
-    var id = req.params.id;
+    var id = req.params.id; //all url params are stored
     //res.send(req.params);
     if(!ObjectID.isValid(id)) {
         return res.status(404).send();
@@ -48,8 +48,25 @@ app.get('/todos/:id', (req, res) => {
     })
 });
 
+app.delete('/todos/:id', (req, res) => {
+    var id = req.params.id;
+
+    if(!ObjectID.isValid(id)) {
+        return res.status(404).send();
+    }
+
+    Todo.findByIdAndRemove(id).then((todo) => {
+        if(!todo) {
+            return res.status(404).send();
+        }
+        res.status(200).send({todo});
+    }).catch((err) => {
+        res.status(400).send();
+    });
+});
+
 app.listen(port, () => {
     console.log(`Server is listening on port ${port}`);
-})
+});
 
 module.exports = {app};
