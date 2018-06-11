@@ -1,15 +1,19 @@
 const expect = require('expect');
 const request = require('supertest');
+const {ObjectID} = require('mongodb');
 
 var {app} = require('./../server');
 var {Todo} = require('./../models/todo');
 
 //Some default, predictable data:
 const todos = [{
+    _id: new ObjectID(),
     text: 'First test todo'
 }, {
+    _id: new ObjectID(),
     text: 'Second test todo'
 }, {
+    _id: new ObjectID(),
     text: 'Third test todo'
 }];
 
@@ -73,6 +77,35 @@ describe('GET /todos', () => {
             .expect((res) => {
                 expect(res.body.todos.length).toBe(3);
             }).end(done);
+    });
+
+});
+
+describe('GET /todos/:id', () => {
+
+    it('should fetch todo with id', (done) => {
+        request(app)
+            .get(`/todos/${todos[0]._id.toHexString()}`)
+            .expect(200)
+            .expect((res) => { //custom expect call
+                expect(res.body.todo.text).toBe(todos[0].text);
+            }).end(done);
+    });
+
+    it('should return 404 if todo not found', (done) => {
+        var idNotInColection = new ObjectID().toHexString();
+        request(app)
+            .get(`/todos/${idNotInColection}`)
+            .expect(404)
+            .end(done);
+    });
+
+    it('should return 404 if id not valid', (done) => {
+        var notValidId = '52334';
+        request(app)
+            .get(`/todos/${notValidId}`)
+            .expect(404)
+            .end(done);
     });
 
 });
