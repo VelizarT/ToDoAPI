@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const {ObjectID} = require('mongodb');
 
 var {mongoose} = require('./db/mongoose');
 var {Todo} = require('./models/todo');
@@ -27,6 +28,24 @@ app.get('/todos', (req, res) => {
     }, (err) => {
         res.status(400).send(err);
     });
+});
+
+//GET /todos/someid; :id creates an id variable on the req object
+//req.params is an object with key-value pairs: id:the passed id
+app.get('/todos/:id', (req, res) => {
+    var id = req.params.id;
+    //res.send(req.params);
+    if(!ObjectID.isValid(id)) {
+        return res.status(404).send();
+    }
+    Todo.findById(id).then((todo) => {
+        if(!todo) {
+            return res.status(404).send();
+        }
+        res.status(200).send({todo});
+    }, (err) => {
+        res.send(400).send();
+    })
 });
 
 app.listen(3000, () => {
