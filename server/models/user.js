@@ -35,6 +35,7 @@ var UserSchema = new mongoose.Schema({
     }]
 });
 
+//methods turns methods into instance methods!
 //overwrite a method so that only certain properties get sent back to the user
 UserSchema.methods.toJSON = function () {
     var user = this;
@@ -54,6 +55,27 @@ UserSchema.methods.generateAuthToken = function () {
 
     return user.save().then(() => {
         return token; //this argument will be passes to the next success call
+    });
+};
+
+//statics turns the added methods into model methods!
+UserSchema.statics.findByToken = function (token) {
+    var User = this;
+    var decoded;
+
+    try {
+        decoded = jwt.verify(token, 'abc123');
+    } catch (e) {
+        // return new Promise((resolve, reject) => { //if the token is invalid -->error and we return rejected promise; alternatively - Promise.reject();
+        //     reject();
+        // });
+        return Promise.reject();
+    }
+
+    return User.findOne({
+        '_id': decoded._id,
+        'tokens.token': token,    //quotes are neccessary when querying nested properties
+        'tokens.access': 'auth'
     });
 };
 
