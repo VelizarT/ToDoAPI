@@ -117,6 +117,18 @@ UserSchema.pre('save', function (next) {
     }
 });
 
+UserSchema.methods.removeToken = function (token) {
+    // $pullis a mndb operator- lets you remove items form array that match some criteria
+    var user = this;
+    
+    // matches an object from the array with the specific tokens and removes it
+    return user.update({
+        $pull: {
+            tokens: {token}
+        }
+    });
+};
+
 //Create user model: 
 var User = mongoose.model('Users', UserSchema);
 
