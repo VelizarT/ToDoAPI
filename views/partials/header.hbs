@@ -1,0 +1,28 @@
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: rgba(66, 103, 178, 0.8);">
+    <a class="navbar-brand" href="/home">The iDo App</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="/todos/me">Your ToDos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/new">New ToDo</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="/" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    You are not logged in
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" id="option-one-dropdown-btn">{{ signOptionOne }}</a>
+                    <a class="dropdown-item" id="option-two-dropdown-btn">{{ signOptionTwo }}</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>

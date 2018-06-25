@@ -1,0 +1,36 @@
+body {
+    background-color: #2B303B;
+}
+
+.hidden {
+    display: none;
+}
+
+.todo-style {
+    margin-bottom: 25px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    cursor: pointer;
+}
+
+.sideBar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: 0px;
+    padding: 1%;
+    width: 36%;
+    background-color: rgba(242, 242, 242, 0.871);
+    border-radius: 0px 10px 10px 0px;
+}
+
+.todo-text {
+    /* background-color: yellow; */
+    background-image: url("../img/sticky-note.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 64%;
+    padding: 2%;
+    border-radius: 10px 0px 0px 10px;
+}

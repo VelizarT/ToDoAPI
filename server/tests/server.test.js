@@ -376,3 +376,29 @@ describe('DELETE /users/me/token', () => {
     });
 
 });
+
+describe('DELETE users/me', () => {
+    it('should delete user', (done) => {
+        request(app)
+            .delete('/users/me')
+            .set('x-auth', users[0].tokens[0].token)
+            .expect(200)
+            .end((err, res) => {
+                if(err) {
+                    return done(err);
+                }
+
+                try {
+                    Todo.find({_creator: users[0]._id}).then((todos) => {
+                        expect(todos.length).toBe(0);
+                    });
+                    User.findById(users[0]._id).then((user) => {
+                        expect(user).toBeFalsy();
+                    });
+                    done();
+                } catch (err) {
+                    done(err);
+                }    
+            });
+    })
+});

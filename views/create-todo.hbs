@@ -1,0 +1,19 @@
+{{#extend "stylesheets"}}
+    {{!-- <link type="text/css" rel="stylesheet" href="../static/css/create-todo.css"> --}}
+{{/extend}}
+
+<h1 class="h1">New</h1>
+
+<form id="new-todo-form">
+    <textarea name="todo" id="new-todo-textarea" cols="30" rows="10" placeholder="Enter text here">
+
+    </textarea>
+    <button>Create</button>
+</form>
+
+{{#extend "scripts"}}
+    <script src="../static/js/escape.js"></script>
+    <script src="../static/js/logout.js"></script>
+    <script src="../static/js/profile-options.js"></script>
+    <script src="../static/js/create-todo.js"></script>
+{{/extend}}

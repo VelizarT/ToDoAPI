@@ -1,0 +1,23 @@
+{{#extend "stylesheets"}}
+    <link type="text/css" rel="stylesheet" href="../static/css/home.css">
+{{/extend}}
+
+<h1 class="h1">Home</h1>
+
+<a href="/todos/me">
+    <div>
+        Your ToDos
+    </div>
+</a>
+
+<a href="/new">
+    <div>
+        New ToDo
+    </div>
+</a>
+
+{{#extend "scripts"}}
+    {{!-- <script src="../static/js/home.js"></script> --}}
+    <script src="../static/js/logout.js"></script>
+    <script src="../static/js/profile-options.js"></script>
+{{/extend}}
