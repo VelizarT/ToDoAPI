@@ -1,0 +1,19 @@
+#new-todo-form-cnt {
+    margin: 5%;
+    background-color: #E9EBEE;
+    border-radius: 2%;
+}
+
+.new-todo-cnt-title {
+    padding-top: 5%;
+    color: #222222;
+    text-align: center;
+}
+
+.btn-new-todo {
+    margin-left: 22%;
+    margin-bottom: 8%;
+    width: 50%;
+    background-color: #222222;
+    color: whitesmoke;
+}

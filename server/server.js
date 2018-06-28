@@ -113,6 +113,7 @@ app.get('/todos/me', (req, res) => {
 app.post('/todos', authenticate, async (req, res) => {
     const todo = new Todo({
         text: req.body.text,
+        title: req.body.title,
         _creator: req.user._id
     });
 
@@ -188,7 +189,7 @@ app.delete('/todos/:id', authenticate, async (req, res) => {
 
 app.patch('/todos/:id', authenticate, async (req, res) => {
     const id = req.params.id;
-    const body = _.pick(req.body, ['text', 'completed']); //pulls out properties specified in the array
+    const body = _.pick(req.body, ['text', 'title','completed']); //pulls out properties specified in the array
 
     if (!ObjectID.isValid(id)) {
         return res.status(404).send();

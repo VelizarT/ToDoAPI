@@ -3,11 +3,12 @@ var token = localStorage.getItem('x-auth');
 var displayTodos = function (todos) {
     var currentTodosContainer = $('#current-todos');
     var completedTodosContainer = $('#completed-todos');
-    var currentTodosTempCnt = $('<div></div>').addClass('row');
-    var completedTodosTempCnt = $('<div></div>').addClass('row');
+    var currentTodosTempCnt = $('<div></div>').addClass('row row-style');
+    var completedTodosTempCnt = $('<div></div>').addClass('row row-style');
 
     todos.forEach(function (todo) {
-        var todoCnt = $('<form></form>').addClass('todo-style col-xl-4');
+        var todoForm = $('<form></form>').addClass('todo-style');
+        var todoCnt = $('<div></div>').addClass('col-xl-4');
         var textCnt = $('<div></div>').addClass('todo-text');
 
         var idCnt = $('<p></p>').addClass('id-cnt hidden');
@@ -18,41 +19,50 @@ var displayTodos = function (todos) {
 
         textCnt.html(todo.text);
 
-        if(todo.completed) {
-            var completedAtCnt = $('<p></p>').html(todo.completedAt);    
-            idCnt.html(todo._id);    
+        if (todo.completed) {
+            var completedAtDateTime = new Date(todo.completedAt);
+            var completedAtCnt = $('<p></p>').html(completedAtDateTime.getDate() + '/' + (completedAtDateTime.getMonth() + 1) + '/' + completedAtDateTime.getFullYear()
+                + ' ' + completedAtDateTime.getHours() + ':'+ completedAtDateTime.getMinutes() + ':' + completedAtDateTime.getSeconds());
+            idCnt.html(todo._id);
             var label = $('<label>Completed:</label>');
-            var radioBtnYes = $('<span class="radio-yes"> Yes </span>').append($('<input type="radio" name="isCompleted" value="Yes"/>').prop('checked', true));
-            var radioBtnNo = $('<span class="radio-no"> No </span>').append($('<input type="radio" name="isCompleted" value="No"/>'));
+            var radioBtnYes = $('<label class="radio-yes"> Yes </label>').append($('<input type="radio" name="isCompleted" value="true"/>').prop('checked', true));
+            var radioBtnNo = $('<label class="radio-no"> No </label>').append($('<input type="radio" name="isCompleted" value="false"/>'));
             var radioBtnCnt = $('<div class="form-group radio-btn"></div>').append(label).append('<br>').append(radioBtnYes).append(radioBtnNo);
-    
-            var todoSideBar = $('<div></div>').addClass('sideBar');
-            todoSideBar.append(radioBtnCnt).append(buttonsCnt);
 
-            todoCnt
+            var todoSideBar = $('<div></div>').addClass('sideBar');
+            todoSideBar.append(radioBtnCnt).append(buttonsCnt).append(completedAtCnt);
+
+            todoForm
                 .append(textCnt)
                 .append(idCnt)
-                .append(completedAtCnt)
                 .append(todoSideBar);
 
+            todoCnt.append(todoForm);
             completedTodosTempCnt.append(todoCnt);
 
         } else {
-            var completedAtCnt = $('<p></p>').html(todo.completedAt);   
-            idCnt.html(todo._id);         
+            idCnt.html(todo._id);
             var label = $('<label>Completed:</label>');
-            var radioBtnYes = $('<span> Yes </span>').append($('<input type="radio" name="isCompleted" value="Yes"/>'));
-            var radioBtnNo = $('<span> No </span>').append($('<input type="radio" name="isCompleted" value="No"/>').prop('checked', true));
-            var radioBtnCnt = $('<div class="form-group"></div>').append(label).append('<br>').append(radioBtnYes).append(radioBtnNo);
+            var radioBtnYes = $('<input type="radio" name="isCompleted" value="true"/>');
+            var radioBtnNo = $('<input type="radio" name="isCompleted" value="false"/>').prop('checked', true);
             
+            var radioBtnCnt = $('<div class="form-group"></div>')
+                .append(label)
+                //.append('<br>')
+                .append($('<label> Yes </label>'))
+                .append(radioBtnYes)
+                .append($('<label> No </label>'))
+                .append(radioBtnNo);
+
             var todoSideBar = $('<div></div>').addClass('sideBar');
             todoSideBar.append(radioBtnCnt).append(buttonsCnt);
 
-            todoCnt
+            todoForm
                 .append(textCnt)
                 .append(idCnt)
                 .append(todoSideBar);
 
+            todoCnt.append(todoForm);
             currentTodosTempCnt.append(todoCnt);
         }
     });

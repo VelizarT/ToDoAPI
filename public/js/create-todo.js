@@ -17,6 +17,7 @@ $('#new-todo-form').on('submit', function (e) {
     e.preventDefault();
 
     var todo = {
+        title: escapeHtml($('#new-todo-title').val()),
         text: escapeHtml($('#new-todo-textarea').val()) 
     }
 

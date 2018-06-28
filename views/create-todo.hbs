@@ -1,15 +1,23 @@
 {{#extend "stylesheets"}}
-    {{!-- <link type="text/css" rel="stylesheet" href="../static/css/create-todo.css"> --}}
+    <link type="text/css" rel="stylesheet" href="../static/css/create-todo.css">
 {{/extend}}
 
-<h1 class="h1">New</h1>
-
-<form id="new-todo-form">
-    <textarea name="todo" id="new-todo-textarea" cols="30" rows="10" placeholder="Enter text here">
-
-    </textarea>
-    <button>Create</button>
-</form>
+<div class="col-xl-4 mx-auto" id="new-todo-form-cnt">
+    <h3 class="new-todo-cnt-title">Add a new todo</h3>
+    <hr>
+    <form id="new-todo-form">
+        <div class="form-group">
+            <label for="new-todo-title">Title</label>
+            <input type="text" class="form-control" id="new-todo-title" placeholder="Enter text here">
+        </div>
+        <div class="form-group">
+            <label for="new-todo-textarea">Task to complete</label>
+            <textarea name="todo" id="new-todo-textarea" cols="15" rows="5" placeholder="Enter text here"
+                class="form-control"></textarea>
+        </div>
+        <button class="btn btn-new-todo">Add</button>
+    </form>
+</div>
 
 {{#extend "scripts"}}
     <script src="../static/js/escape.js"></script>

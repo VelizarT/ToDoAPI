@@ -1,0 +1,20 @@
+body {
+    background-color: #2B303B;
+}
+
+.h3 {
+    margin: 2%;
+    /* color: #AFB7C4; */
+    /* color: #686868; */
+    color: whitesmoke;
+}
+
+.navbar {
+    background-color: #222222;
+    box-shadow: 0px 0.5px 10px black;
+}
+
+.navbar-brand {
+    color: #AFB7C4;    
+}
+

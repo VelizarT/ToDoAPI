@@ -1,17 +1,29 @@
 {{#extend "stylesheets"}}
-    <link type="text/css" rel="stylesheet" href="../static/css/todos.css">
+    <link type="text/css" rel="stylesheet" href="../static/css/todos.css"> 
 {{/extend}}
 
-<h1 class="h1">Your Todos</h1>
+<div id="edit-mode-cnt">
 
-<div id="current-todos">Current Todos</div>
-<div id="completed-todos">Completed Todos</div>
+</div>
+<div class="row">
+    <h3 class="h3">Current Todos</h3>
+    <hr>
+    <div class="xl-col-12" id="current-todos">
+
+    </div>
+</div>
+<div class="row">
+    <h3 class="h3">Completed Todos</h3>
+    <hr>
+    <div class="xl-col-12" id="completed-todos">
+
+    </div>
+</div>
 
 {{#extend "scripts"}}
     <script src="../static/js/logout.js"></script>
     <script src="../static/js/profile-options.js"></script>
     <script src="../static/js/todos.js"></script>
     <script src="../static/js/patch-todo.js"></script>
-    <script src="../static/js/edit-todo.js"></script>
-
+    <script src="../static/js/edit-todo.js"></script> 
 {{/extend}}
