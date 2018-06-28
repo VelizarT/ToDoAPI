@@ -1,21 +1,27 @@
 {{#extend "stylesheets"}}
-    <link rel="stylesheet" href="/static/css/login-form.css"/>
+    <link rel="stylesheet" href="/static/css/form.css" /> 
 {{/extend}}
 
-<div id="signup-cnt" class="">
-    <h3>Sign Up</h3>
+<div class="form-cnt col-xl-4 mx-auto">
+    <h3 class="form-title">Sign Up</h3>
+    <hr>
     <form id="signup">
-        <label>Username</label>
-        <input type="text" placeholder="Enter e-mail" id="signup-username" />
-        <label>Password</label>
-        <input type="text" placeholder="Enter password" id="signup-password" />
-        <button>Sign Up</button>
+        <div class="form-group">
+            <label>Username</label>
+            <input type="text" class="form-control" placeholder="Enter e-mail" id="signup-username" />
+        </div>
+        <div class="form-group">
+            <label>Password</label>
+            <input type="text" class="form-control" placeholder="Enter password" id="signup-password" />
+        </div>
+        <button class="btn form-btn">Sign Up</button>
     </form>
+    <span class="float-right"><a href="/login">or Log in here</a></span>
 </div>
 
 {{#extend "scripts"}}
     <script src="../static/js/escape.js"></script>
     <script src="../static/js/greeting-header.js"></script>
     <script src="../static/js/get-home-page.js"></script>
-    <script src="../static/js/signup.js"></script>
+    <script src="../static/js/signup.js"></script> 
 {{/extend}}

@@ -2,57 +2,47 @@
     display: none;
 }
 
-/* #current-todos {
-    background-color: #E9EBEE;
-    border-radius: 1%;
-} */
-
-/* #completed-todos {
-    background-color: #E9EBEE;
-    border-radius: 1%;
-} */
-
 .row-style {
     background-color: #E9EBEE;
-    border-radius: 5px;;
+    border-radius: 5px;
 }
 
 .todo-style {
-    /* margin-bottom: 25px;
-    padding: 5%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around; */
     margin: 3%;
+    padding: 3%;
     max-height: 150;
     background-color: white;
     border-radius: 5px;
     overflow: hidden;
-    /* cursor: pointer; */
+    box-shadow: 0px 0.5px 10px gray;
 }
 
 .sideBar {
+    margin: 0%;
+    padding: 0%;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    /* margin: 0px;
-    padding: 1%;
-    width: 36%; */
-    /* background-color: white; */
-    /* background: url('../img/metal.png');
-    border-radius: 0px 10px 10px 0px;
-    box-shadow: 1px -0.5px 10px black; */
-    /* cursor: default;  */
+    font-size: 50%;
 }
 
 .todo-text {
-    /* background-color: white; */
-    /* background-image: url("../img/sticky-note.png");
-    background-size: cover;
-    background-repeat: no-repeat; */
-    /* width: 64%;
-    padding: 2%; */
-    /* border-radius: 10px 0px 0px 10px; */
-    /* overflow: hidden; */
+    text-align: center;
+}
+
+.radio-btn {
+    /* font-size: 50%; */
+}
+
+.btn-edit, .btn-save {
+    width: 50%;
+    height: 50%;
+    margin: 1%;
+    /* font-size: 50%; */
+    text-align: center;
+}
+
+.date-time-cnt {
+    /* font-size: 50%; */
 }
 

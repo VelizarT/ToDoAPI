@@ -1,23 +1,34 @@
 {{#extend "stylesheets"}}
-    <link type="text/css" rel="stylesheet" href="../static/css/home.css">
+<link type="text/css" rel="stylesheet" href="../static/css/home.css"> 
 {{/extend}}
 
-<h1 class="h1">Home</h1>
+<h1 class="home-title">Home</h1>
 
-<a href="/todos/me">
-    <div>
-        Your ToDos
+<div class="row" style="margin-top: 13%;">
+
+    <div class="col-xl-6 mx-auto">
+        <div class="row">
+            <div class="col-xl-6">
+                <a class="link" href="/todos/me">
+                    <div class="home-links">
+                        <span>Your ToDos</span>
+                    </div>
+                </a>
+            </div>
+            <div class="col-xl-6">
+                <a class="link" href="/new">
+                    <div class="home-links">
+                        <span>New ToDo</span>
+                    </div>
+                </a>
+            </div>
+        </div>
     </div>
-</a>
 
-<a href="/new">
-    <div>
-        New ToDo
-    </div>
-</a>
+</div>
 
-{{#extend "scripts"}}
-    {{!-- <script src="../static/js/home.js"></script> --}}
-    <script src="../static/js/logout.js"></script>
-    <script src="../static/js/profile-options.js"></script>
+{{#extend "scripts"}} {{!--
+<script src="../static/js/home.js"></script> --}}
+<script src="../static/js/logout.js"></script>
+<script src="../static/js/profile-options.js"></script> 
 {{/extend}}
