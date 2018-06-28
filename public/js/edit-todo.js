@@ -37,7 +37,7 @@ $(document).ready(function () {
         // console.log($this);
         var currentTodoId = $this.parent().parent().siblings('.id-cnt').html();
         var currentTodoText = $this.parent().parent().siblings('.todo-text').html();
-        var isCompleted = ($this.parent().prev().children('input[type=radio]:checked').val()) === 'true';
+        var isCompleted = ($this.parent().prev().children('input[type=checkbox]:checked').val()) === 'Yes';
 
         alert(isCompleted);
         patchTodo(currentTodoId, currentTodoText, isCompleted).then(function (response) {

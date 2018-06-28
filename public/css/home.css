@@ -1,5 +1,10 @@
 .home-title {
+    margin-top: 2%;
     color: whitesmoke;
+}
+
+.home-paragraph {
+    color: #E9EBEE;
 }
 
 .home-links {

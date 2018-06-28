@@ -16,26 +16,21 @@ var displayTodos = function (todos) {
         textCnt.append(titleCnt);
         // textCnt.text(todo.text);
 
-        console.log(titleCnt);
 
         var idCnt = $('<p></p>').addClass('id-cnt hidden');
 
-        var editButton = $('<button>Edit</button>').addClass('btn-edit');
-        var saveButton = $('<button>Save</button>').addClass('btn-save');
-        var buttonsCnt = $('<div class="form-group"></div>').append(editButton).append(saveButton);
+        var editButton = $('<button>Edit</button>').addClass('btn btn-edit');
+        var saveButton = $('<button>Save</button>').addClass('btn btn-save');
+        var buttonsCnt = $('<div class="btn-cnt"></div>').append(editButton).append(saveButton);
 
         if (todo.completed) {
             var completedAtDateTime = new Date(todo.completedAt);
-            var completedAtCnt = $('<p></p>').html(completedAtDateTime.getDate() + '/' + (completedAtDateTime.getMonth() + 1) + '/' + completedAtDateTime.getFullYear()
+            var completedAtCnt = $('<div></div>').html('Completed: ' + completedAtDateTime.getDate() + '/' + (completedAtDateTime.getMonth() + 1) + '/' + completedAtDateTime.getFullYear()
                 + ' ' + completedAtDateTime.getHours() + ':'+ completedAtDateTime.getMinutes() + ':' + completedAtDateTime.getSeconds()).addClass('date-time-cnt');
             idCnt.html(todo._id);
-            var label = $('<label>Completed:</label>');
-            var radioBtnYes = $('<label class="radio-yes"> Yes </label>').append($('<input type="radio" name="isCompleted" value="true"/>').prop('checked', true));
-            var radioBtnNo = $('<label class="radio-no"> No </label>').append($('<input type="radio" name="isCompleted" value="false"/>'));
-            var radioBtnCnt = $('<div class="form-group radio-btn"></div>').append(label).append(radioBtnYes).append(radioBtnNo);
 
-            var todoSideBar = $('<div></div>').addClass('sideBar');
-            todoSideBar.append(radioBtnCnt).append(buttonsCnt).append(completedAtCnt);
+            var todoSideBar = $('<div></div>').addClass('side-bar');
+            todoSideBar.append(completedAtCnt).append(buttonsCnt);
 
             todoForm
                 .append(textCnt)
@@ -47,20 +42,16 @@ var displayTodos = function (todos) {
 
         } else {
             idCnt.html(todo._id);
-            var label = $('<label>Completed:</label>');
-            var radioBtnYes = $('<input type="radio" name="isCompleted" value="true"/>');
-            var radioBtnNo = $('<input type="radio" name="isCompleted" value="false"/>').prop('checked', true);
+            var label = $('<label class="form-check-label">Check to complete:</label>');
+            var checkbox = $('<input class="form-check-input" type="checkbox" name="isCompleted" value="Yes"/>').prop('checked', false);
+            var checkboxCnt = $('<div class="form-check-inline checkbox-cnt"></div>').append(label).append(checkbox);
             
-            var radioBtnCnt = $('<div class="form-group"></div>')
-                .append(label)
-                //.append('<br>')
-                .append($('<label> Yes </label>'))
-                .append(radioBtnYes)
-                .append($('<label> No </label>'))
-                .append(radioBtnNo);
+            // var radioBtnCnt = $('<div class="radio-btn"></div>')
+            //     .append(label)
+            //     .append(radioBtnYes);
 
-            var todoSideBar = $('<div></div>').addClass('sideBar');
-            todoSideBar.append(radioBtnCnt).append(buttonsCnt);
+            var todoSideBar = $('<div></div>').addClass('side-bar');
+            todoSideBar.append(checkboxCnt).append(buttonsCnt);
 
             todoForm
                 .append(textCnt)
