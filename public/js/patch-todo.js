@@ -3,7 +3,7 @@ var token = localStorage.getItem('x-auth');
 var patchTodo = function (todoId, todoText, todoCompleted) {
     var todo = {
         _id: todoId,
-        text: todoText,
+        text: escapeHtml(todoText),
         completed: todoCompleted
     }
     var todoUrl = '/todos/' + todoId;

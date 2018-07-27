@@ -1,11 +1,9 @@
-.home-title {
+/* .home-container {
     margin-top: 2%;
-    color: whitesmoke;
-}
-
-.home-paragraph {
-    color: #E9EBEE;
-}
+    color: #E67E22;
+    margin-left: -65px; 
+    font-weight: bold;
+} */
 
 .home-links {
     background-color: rgba(233, 235, 238, 0.7);

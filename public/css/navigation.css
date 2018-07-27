@@ -1,12 +1,19 @@
-body {
+html, body {
     background-color: #2B303B;
+    margin: 0;
+    height: 100%;
+}
+
+#notes-background {
+    background-image: url('../img/notebook.jpg');
+    background-size: cover;                      
+    background-repeat: no-repeat;
+    background-position: center; 
 }
 
 .h3 {
     margin: 2%;
-    /* color: #AFB7C4; */
-    /* color: #686868; */
-    color: whitesmoke;
+    color: black;
 }
 
 .navbar {
@@ -16,5 +23,15 @@ body {
 
 .navbar-brand {
     color: #AFB7C4;    
+}
+
+#home-link {
+    color: whitesmoke;
+    cursor: pointer;
+}
+
+#your-todos-link,
+#new-todo-link {
+    cursor: pointer;
 }
 

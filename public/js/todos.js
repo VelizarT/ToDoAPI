@@ -7,16 +7,18 @@ var displayTodos = function (todos) {
     var completedTodosTempCnt = $('<div></div>').addClass('row row-style');
 
     todos.forEach(function (todo) {
+        console.log(JSON.stringify(todo));
         var todoCnt = $('<div></div>').addClass('col-xl-4 col-md-6');
         var todoForm = $('<form></form>').addClass('todo-style');
         
-        var textCnt = $('<div></div>').addClass('todo-text');
+        var titleAndTextCnt = $('<div></div>').addClass('text-title-cnt');
         var titleCnt = $('<div></div>').addClass('todo-title');
-        titleCnt.text(todo.title);
-        textCnt.append(titleCnt);
-        // textCnt.text(todo.text);
-
-
+        var textCnt = $('<div></div>').addClass('todo-text');
+        textCnt.html(todo.text);
+        titleCnt.html(todo.title);
+        titleAndTextCnt.append(titleCnt)
+                       .append(textCnt);
+        
         var idCnt = $('<p></p>').addClass('id-cnt hidden');
 
         var editButton = $('<button>Edit</button>').addClass('btn btn-edit');
@@ -26,14 +28,14 @@ var displayTodos = function (todos) {
         if (todo.completed) {
             var completedAtDateTime = new Date(todo.completedAt);
             var completedAtCnt = $('<div></div>').html('Completed: ' + completedAtDateTime.getDate() + '/' + (completedAtDateTime.getMonth() + 1) + '/' + completedAtDateTime.getFullYear()
-                + ' ' + completedAtDateTime.getHours() + ':'+ completedAtDateTime.getMinutes() + ':' + completedAtDateTime.getSeconds()).addClass('date-time-cnt');
+                + ' at ' + completedAtDateTime.getHours() + ':'+ completedAtDateTime.getMinutes() + ':' + completedAtDateTime.getSeconds()).addClass('date-time-cnt');
             idCnt.html(todo._id);
 
             var todoSideBar = $('<div></div>').addClass('side-bar');
             todoSideBar.append(completedAtCnt).append(buttonsCnt);
 
             todoForm
-                .append(textCnt)
+                .append(titleAndTextCnt)
                 .append(idCnt)
                 .append(todoSideBar);
 
@@ -54,7 +56,7 @@ var displayTodos = function (todos) {
             todoSideBar.append(checkboxCnt).append(buttonsCnt);
 
             todoForm
-                .append(textCnt)
+                .append(titleAndTextCnt)
                 .append(idCnt)
                 .append(todoSideBar);
 
@@ -82,5 +84,5 @@ getTodos().then(function (response, status, xhr) {
     // alert(JSON.stringify(response.todos));
     displayTodos(response.todos);
 }).catch(function (err) {
-    alert(JSON.stringify(err));
+    alert('Please, log in!');
 });

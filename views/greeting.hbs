@@ -1,13 +1,19 @@
 {{#extend "stylesheets"}}
-<link rel="stylesheet" href="/static/css/greeting.css"/>
+    <link rel="stylesheet" href="../static/css/trasparent-gray-cnt.css"/>
 {{/extend}}
 
-<div id="greeting">
-    <h3>Welcome to the iDo App</h3>
-    <p>Here you can keep track of your busy schedule</p>
-    <button class="btn" id="show-login">LogIn</button>
-    <span>or</span>
-    <button class="btn" id="show-signup">SignUp</button>
+<div class="row" style="margin-top: 17%;">
+    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-8 mx-auto">
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 transparent-gray-cnt">
+                <h3>Welcome to the iDo App</h3>
+                <p>Here you can keep track of your busy schedule</p>
+                <button class="btn greeting-bnt-style" id="show-login">Log in</button>
+                <span>or</span>
+                <button class="btn greeting-bnt-style" id="show-signup">Sign up</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 {{#extend "scripts"}}

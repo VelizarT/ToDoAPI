@@ -1,8 +1,19 @@
 {{#extend "stylesheets"}}
+    <link rel="stylesheet" href="/static/css/trasparent-gray-cnt.css"/>
 {{/extend}}
 
-<h1>Profile works</h1>
-<button class="btn" id="delete-account">Delete account</button>
+
+<div class="row" style="margin-top: 17%;">
+    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-8 mx-auto">
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 transparent-gray-cnt">
+                <h3>Delete Account</h3>
+                <p>If you delete your account, all of your info will be lost!</p>
+                <button class="btn btn-danger" id="delete-account">Delete account</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 {{#extend "scripts"}}
     <script src="../static/js/delete-account.js"></script>  
