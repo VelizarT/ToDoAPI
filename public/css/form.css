@@ -6,14 +6,18 @@
 
 .form-title {
     padding-top: 5%;
-    color: #222222;
+    color: #D35400;
     text-align: center;
+}
+
+hr {
+    background-color: #D35400;
 }
 
 .form-btn {
     margin-left: 22%;
     margin-bottom: 8%;
     width: 50%;
-    background-color: #222222;
+    background-color: #D35400;
     color: whitesmoke;
 }

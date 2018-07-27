@@ -1,19 +1,29 @@
 html, body {
-    background-color: #2B303B;
+    background-color: #2D2D2F;
     margin: 0;
     height: 100%;
 }
 
-#notes-background {
-    background-image: url('../img/notebook.jpg');
+.notes-background {
+    background: 
+        url('../img/notebook.jpg') center no-repeat, 
+        url('../img/wood.jpg') repeat;
     background-size: cover;                      
-    background-repeat: no-repeat;
-    background-position: center; 
+    /* background-repeat: no-repeat, repeat; */
+    background-position: center;  
+}
+
+.wood-background {
+    height: auto;
+    background-image: url('../img/wood.jpg');
+    /* background-size: cover;                       */
+    background-repeat: repeat;
+    /* background-position: center;  */
 }
 
 .h3 {
     margin: 2%;
-    color: black;
+    color: #E67E22;
 }
 
 .navbar {
@@ -35,3 +45,11 @@ html, body {
     cursor: pointer;
 }
 
+#footer {
+    position:fixed;
+    left:0px;
+    bottom:0px;
+    height:30px;
+    width:100%;
+    background:black;
+ }

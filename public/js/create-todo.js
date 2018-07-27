@@ -24,7 +24,7 @@ $('#new-todo-form').on('submit', function (e) {
     createTodo(todo).then(function (response, status, xhr) {
         window.location.href = '/todos/me';
     }).catch(function (err) {
-        alert('Please, log in!');
+        alert(JSON.stringify(err));
     });
 
 });

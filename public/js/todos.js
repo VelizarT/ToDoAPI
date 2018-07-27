@@ -1,3 +1,5 @@
+$('body').removeClass('notes-background').addClass('wood-background');
+
 var token = localStorage.getItem('x-auth');
 
 var displayTodos = function (todos) {
@@ -84,5 +86,5 @@ getTodos().then(function (response, status, xhr) {
     // alert(JSON.stringify(response.todos));
     displayTodos(response.todos);
 }).catch(function (err) {
-    alert('Please, log in!');
+    alert(err);
 });
