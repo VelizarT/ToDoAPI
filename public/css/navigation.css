@@ -21,6 +21,10 @@ html, body {
     /* background-position: center;  */
 }
 
+.dropdown-item {
+    cursor: pointer;
+}
+
 .h3 {
     margin: 2%;
     color: #E67E22;
@@ -46,10 +50,13 @@ html, body {
 }
 
 #footer {
-    position:fixed;
+    /* position:fixed; */
     left:0px;
     bottom:0px;
     height:30px;
     width:100%;
+    padding-left: 25px;
     background:black;
+    color: darkgray; 
+    font-size: 12px;
  }

@@ -2,36 +2,8 @@
     display: none;
 }
 
-.row-style {
-    background-color: rgba(233, 235, 238, 0.5);
-    border-radius: 5px;
-}
-
-.todo-style {
-    margin: 3%;
-    max-height: 150;
-    background-color: white;
-    border-radius: 5px;
-    overflow: hidden;
-    box-shadow: 0px 0.5px 10px black;
-}
-
-.side-bar {
-    margin: 1%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    font-size: 0.75em;
-}
-
-.todo-text {
-    margin: 1%;
-    text-align: left;
-}
-
 .todo-title {
     text-align: center;
-    padding: 3%;    
 }
 
 .checkbox-cnt {
@@ -45,8 +17,6 @@
 }
 
 .btn-edit, .btn-save {
-    /* width: 100%;
-    height: 100%; */
     margin-left: 1%;
     background-color: #D35400;
     color: whitesmoke;
@@ -54,7 +24,57 @@
     font-size: 0.75em;
 }
 
-.date-time-cnt {
-    align-self: flex-end;
+.date-time-completed {
+    float: right;
+    margin-right: 10%;
+    padding: 0;
+    color: gray;
+    font-size: 13px;
 }
 
+.pointer{
+    cursor: pointer;
+}
+
+.edit-cnt {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    min-height: 30%;
+    margin-top: 20%;
+    background-color: #FFFFFF;
+    border: 1px solid #DFDFDF;
+    border-radius: 3px;
+    position: absolute;
+}
+
+.edit-title {
+    margin: 1%;   
+}
+
+.edit-text {
+    margin: 3%;
+}
+
+.todo-style {
+    margin: 3%;
+    max-height: 150;
+    background-color: white;
+    /* border-radius: 5px; */
+    overflow: hidden;
+    /* box-shadow: 0px 0.5px 10px black; */
+    align-self: flex-end;
+}
+.side-bar {
+    margin: 5%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    font-size: 0.75em;
+}
+
+hr {
+    width: 100%;
+    /* border-color: gray; */
+}

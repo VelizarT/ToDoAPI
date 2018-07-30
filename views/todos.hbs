@@ -1,21 +1,27 @@
 {{#extend "stylesheets"}}
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <link type="text/css" rel="stylesheet" href="../static/css/todos.css"> 
 {{/extend}}
 
-{{!-- <div class="row"> --}}
-    <h3 class="h3">Current Todos</h3>
-    <hr>
-    <div class="xl-col-12" id="current-todos">
+<div class="row">
+    {{!-- <h3 class="h3">Current Todos</h3>
+    <hr> --}}
+
+    <div class="col-xl-8 xol-lg-8 col-md-6 col-xs-6" id="todos-edit-cnt">
+        
+    </div>
+
+    <div class="col-xl-4 xol-lg-4 col-md-6 col-xs-6" id="todos-cnt">
 
     </div>
-{{!-- </div> --}}
-{{!-- <div class="row"> --}}
+</div>
+{{!-- <div class="row">
     <h3 class="h3">Completed Todos</h3>
     <hr>
     <div class="xl-col-12" id="completed-todos">
 
     </div>
-{{!-- </div> --}}
+</div> --}}
 
 {{#extend "scripts"}}
     <script src="../static/js/escape.js"></script>

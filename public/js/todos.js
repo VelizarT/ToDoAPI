@@ -3,72 +3,68 @@ $('body').removeClass('notes-background').addClass('wood-background');
 var token = localStorage.getItem('x-auth');
 
 var displayTodos = function (todos) {
-    var currentTodosContainer = $('#current-todos');
-    var completedTodosContainer = $('#completed-todos');
-    var currentTodosTempCnt = $('<div></div>').addClass('row row-style');
-    var completedTodosTempCnt = $('<div></div>').addClass('row row-style');
+    todoEditMode(todos[todos.length-1]);
+
+    var todosContainer = $('#todos-cnt');
+
+    var titleCurrent = $('<h3></h3>').html('Current Todos').addClass('h3');
+    var titleCompleted = $('<h3></h3>').html('Completed Todos').addClass('h3');
+
+    var currentTodosTempCnt = $('<div></div>').addClass('list-group clearfix');
+    var completedTodosTempCnt = $('<div></div>').addClass('list-group clearfix');
 
     todos.forEach(function (todo) {
-        console.log(JSON.stringify(todo));
-        var todoCnt = $('<div></div>').addClass('col-xl-4 col-md-6');
-        var todoForm = $('<form></form>').addClass('todo-style');
-        
-        var titleAndTextCnt = $('<div></div>').addClass('text-title-cnt');
+        var todoCnt = $('<a></a>').addClass('list-group-item pointer');
         var titleCnt = $('<div></div>').addClass('todo-title');
-        var textCnt = $('<div></div>').addClass('todo-text');
-        textCnt.html(todo.text);
         titleCnt.html(todo.title);
-        titleAndTextCnt.append(titleCnt)
-                       .append(textCnt);
+
         
         var idCnt = $('<p></p>').addClass('id-cnt hidden');
 
-        var editButton = $('<button>Edit</button>').addClass('btn btn-edit');
-        var saveButton = $('<button>Save</button>').addClass('btn btn-save');
-        var buttonsCnt = $('<div class="btn-cnt"></div>').append(editButton).append(saveButton);
-
         if (todo.completed) {
+            var completedText = $('<span></span>').html('Completed:  ');
+            var calendar = $('<span></span>').addClass('far fa-calendar-alt');
+            var clock = $('<span></span>').addClass('far fa-clock');
             var completedAtDateTime = new Date(todo.completedAt);
-            var completedAtCnt = $('<div></div>').html('Completed: ' + completedAtDateTime.getDate() + '/' + (completedAtDateTime.getMonth() + 1) + '/' + completedAtDateTime.getFullYear()
-                + ' at ' + completedAtDateTime.getHours() + ':'+ completedAtDateTime.getMinutes() + ':' + completedAtDateTime.getSeconds()).addClass('date-time-cnt');
+            var completedAtDate = ' ' + completedAtDateTime.getDate() + '/' + (completedAtDateTime.getMonth() + 1) + '/' + completedAtDateTime.getFullYear();
+            var completedAtTime = ' ' + completedAtDateTime.getHours() + ':'+ completedAtDateTime.getMinutes() + ':' + completedAtDateTime.getSeconds();
+            var completedDateTimeCnt = $('<div></div>').addClass('date-time-completed');
+            
             idCnt.html(todo._id);
 
-            var todoSideBar = $('<div></div>').addClass('side-bar');
-            todoSideBar.append(completedAtCnt).append(buttonsCnt);
-
-            todoForm
-                .append(titleAndTextCnt)
-                .append(idCnt)
-                .append(todoSideBar);
-
-            todoCnt.append(todoForm);
+            calendar.text(completedAtDate);
+            clock.text(completedAtTime);
+            completedDateTimeCnt.append(completedText).append(calendar).append(' '). append(clock);
+            todoCnt.append(titleCnt).append(idCnt).append(completedDateTimeCnt);
+            attachEditEvent(todoCnt, todo._id);
             completedTodosTempCnt.append(todoCnt);
 
         } else {
             idCnt.html(todo._id);
-            var label = $('<label class="form-check-label">Check to complete:</label>');
-            var checkbox = $('<input class="form-check-input" type="checkbox" name="isCompleted" value="Yes"/>').prop('checked', false);
-            var checkboxCnt = $('<div class="form-check-inline checkbox-cnt"></div>').append(label).append(checkbox);
-            
-            // var radioBtnCnt = $('<div class="radio-btn"></div>')
-            //     .append(label)
-            //     .append(radioBtnYes);
 
-            var todoSideBar = $('<div></div>').addClass('side-bar');
-            todoSideBar.append(checkboxCnt).append(buttonsCnt);
-
-            todoForm
-                .append(titleAndTextCnt)
-                .append(idCnt)
-                .append(todoSideBar);
-
-            todoCnt.append(todoForm);
+            todoCnt.append(titleCnt).append(idCnt);
+            attachEditEvent(todoCnt, todo._id);
             currentTodosTempCnt.append(todoCnt);
         }
     });
-    currentTodosContainer.append(currentTodosTempCnt);
-    completedTodosContainer.append(completedTodosTempCnt);
+
+    todosContainer.append(titleCurrent);
+    todosContainer.append(currentTodosTempCnt);
+    todosContainer.append(titleCompleted);
+    todosContainer.append(completedTodosTempCnt);
 };
+
+var attachEditEvent = function(el, id) {
+    $(el).on('click', function() {
+        $('.edit-cnt').remove();
+        window.scrollTo(0, 0);
+        getTodoById(id).then((response, status, xhr) => {
+            todoEditMode(response.todo);
+        }).catch((err) => {
+            console.log(err);
+        });
+    });
+}
 
 var getTodos = function () {
     return $.ajax({
@@ -83,7 +79,6 @@ var getTodos = function () {
 }
 
 getTodos().then(function (response, status, xhr) {
-    // alert(JSON.stringify(response.todos));
     displayTodos(response.todos);
 }).catch(function (err) {
     alert(err);
