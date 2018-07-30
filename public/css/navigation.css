@@ -1,7 +1,21 @@
-html, body {
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
     background-color: #2D2D2F;
     margin: 0;
     height: 100%;
+    position: relative;
+    padding-bottom: 6rem;
+    min-height: 100%;
 }
 
 .notes-background {
@@ -50,12 +64,12 @@ html, body {
 }
 
 #footer {
-    /* position:fixed; */
-    left:0px;
-    bottom:0px;
-    height:30px;
-    width:100%;
-    padding-left: 25px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    text-align: center;
     background:black;
     color: darkgray; 
     font-size: 12px;
