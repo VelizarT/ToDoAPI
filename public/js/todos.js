@@ -3,7 +3,14 @@ $('body').removeClass('notes-background').addClass('wood-background');
 var token = localStorage.getItem('x-auth');
 
 var displayTodos = function (todos) {
-    todoEditMode(todos[todos.length-1]);
+
+    if(todos.length > 0) {
+        todoEditMode(todos[todos.length-1]);
+    } else {
+        var noTodosMessages = $('<h3></h3>').addClass('h3').html('No todos to display');
+        $('#todos-cnt').append(noTodosMessages);
+        return;
+    }
 
     var todosContainer = $('#todos-cnt');
 
@@ -18,24 +25,15 @@ var displayTodos = function (todos) {
         var titleCnt = $('<div></div>').addClass('todo-title');
         titleCnt.html(todo.title);
 
-        
+        addDeleteBtn(todoCnt);
+
         var idCnt = $('<p></p>').addClass('id-cnt hidden');
 
         if (todo.completed) {
-            var completedText = $('<span></span>').html('Completed:  ');
-            var calendar = $('<span></span>').addClass('far fa-calendar-alt');
-            var clock = $('<span></span>').addClass('far fa-clock');
-            var completedAtDateTime = new Date(todo.completedAt);
-            var completedAtDate = ' ' + completedAtDateTime.getDate() + '/' + (completedAtDateTime.getMonth() + 1) + '/' + completedAtDateTime.getFullYear();
-            var completedAtTime = ' ' + (+completedAtDateTime.getHours() < 10 ? '0' : '') + completedAtDateTime.getHours() + ':' + (+completedAtDateTime.getMinutes() < 10 ? '0' : '') + completedAtDateTime.getMinutes();
-            var completedDateTimeCnt = $('<div></div>').addClass('date-time-completed');
-            
             idCnt.html(todo._id);
 
-            calendar.text(completedAtDate);
-            clock.text(completedAtTime);
-            completedDateTimeCnt.append(completedText).append(calendar).append(' '). append(clock);
-            todoCnt.append(titleCnt).append(idCnt).append(completedDateTimeCnt);
+            todoCnt.append(titleCnt).append(idCnt);
+            createCompletedCnt(todoCnt, todo);
             attachEditEvent(todoCnt, todo._id);
             completedTodosTempCnt.append(todoCnt);
 
@@ -48,11 +46,35 @@ var displayTodos = function (todos) {
         }
     });
 
-    todosContainer.append(titleCurrent);
-    todosContainer.append(currentTodosTempCnt);
-    todosContainer.append(titleCompleted);
-    todosContainer.append(completedTodosTempCnt);
+
+    var checkIfCompleted = todos.map(todo => todo.completed);
+
+    if(checkIfCompleted.indexOf(false) < 0) {
+        var noTodosMessages = $('<h3></h3>').addClass('h3').html('No current todos');
+        todosContainer.append(noTodosMessages);
+    } else {
+        todosContainer.append(titleCurrent).append(currentTodosTempCnt);
+    }
+
+    if(checkIfCompleted.indexOf(true) >= 0) {
+        todosContainer.append(titleCompleted).append(completedTodosTempCnt);
+    } 
 };
+
+var createCompletedCnt = function(el, todo) {
+    var completedText = $('<span></span>').html('Completed:  ');
+    var calendar = $('<span></span>').addClass('far fa-calendar-alt');
+    var clock = $('<span></span>').addClass('far fa-clock');
+    var completedAtDateTime = new Date(todo.completedAt);
+    var completedAtDate = ' ' + completedAtDateTime.getDate() + '/' + (completedAtDateTime.getMonth() + 1) + '/' + completedAtDateTime.getFullYear();
+    var completedAtTime = ' ' + (+completedAtDateTime.getHours() < 10 ? '0' : '') + completedAtDateTime.getHours() + ':' + (+completedAtDateTime.getMinutes() < 10 ? '0' : '') + completedAtDateTime.getMinutes();
+    var completedDateTimeCnt = $('<div></div>').addClass('date-time-completed');
+    calendar.text(completedAtDate);
+    clock.text(completedAtTime);
+    completedDateTimeCnt.append(completedText).append(calendar).append(' ').append(clock).append('<br>');
+
+    el.append(completedDateTimeCnt);
+}
 
 var attachEditEvent = function(el, id) {
     $(el).on('click', function() {
@@ -64,6 +86,11 @@ var attachEditEvent = function(el, id) {
             console.log(err);
         });
     });
+}
+
+var addDeleteBtn = function(el) {
+    var deleteBtn = $('<i></i>').addClass('fas fa-times delete-btn');
+    el.append(deleteBtn);
 }
 
 var getTodos = function () {

@@ -29,6 +29,17 @@ $(document).ready(function () {
             location.reload();
         });
     });
+
+    $('#todos-cnt').on('click', '.delete-btn', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $this = $(this);
+        var currentTodoId = $this.siblings('.id-cnt').html();
+
+        deleteTodo(currentTodoId).then(function (response) {
+            location.reload();
+        });
+    });
 });
 
 var getTodoById = function(id) {
@@ -70,19 +81,8 @@ var todoEditMode = function(todo) {
         editCnt.append(todoTitle).append('<hr>').append(todoText).append(todoId).append(todoForm);
 
     } else {
-        //create completedAtCnt
-        var completedText = $('<span></span>').html('Completed:  ');
-        var calendar = $('<span></span>').addClass('far fa-calendar-alt');
-        var clock = $('<span></span>').addClass('far fa-clock');
-        var completedAtDateTime = new Date(todo.completedAt);
-        var completedAtDate = ' ' + completedAtDateTime.getDate() + '/' + (completedAtDateTime.getMonth() + 1) + '/' + completedAtDateTime.getFullYear();
-        var completedAtTime = ' ' + (+completedAtDateTime.getHours() < 10 ? '0' : '') + completedAtDateTime.getHours() + ':' + (+completedAtDateTime.getMinutes() < 10 ? '0' : '') + completedAtDateTime.getMinutes();
-        var completedDateTimeCnt = $('<div></div>').addClass('date-time-completed');
-        calendar.text(completedAtDate);
-        clock.text(completedAtTime);
-        completedDateTimeCnt.append(completedText).append(calendar).append(' ').append(clock).append('<br>');
-        
-        editCnt.append(todoTitle).append('<hr>').append(todoText).append(todoId).append('<hr>').append(completedDateTimeCnt);    
+        editCnt.append(todoTitle).append('<hr>').append(todoText).append(todoId).append('<hr>');
+        createCompletedCnt(editCnt, todo);
     }
 
     //append all
