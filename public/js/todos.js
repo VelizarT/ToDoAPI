@@ -27,7 +27,7 @@ var displayTodos = function (todos) {
             var clock = $('<span></span>').addClass('far fa-clock');
             var completedAtDateTime = new Date(todo.completedAt);
             var completedAtDate = ' ' + completedAtDateTime.getDate() + '/' + (completedAtDateTime.getMonth() + 1) + '/' + completedAtDateTime.getFullYear();
-            var completedAtTime = ' ' + completedAtDateTime.getHours() + ':'+ completedAtDateTime.getMinutes() + ':' + completedAtDateTime.getSeconds();
+            var completedAtTime = ' ' + (+completedAtDateTime.getHours() < 10 ? '0' : '') + completedAtDateTime.getHours() + ':' + (+completedAtDateTime.getMinutes() < 10 ? '0' : '') + completedAtDateTime.getMinutes();
             var completedDateTimeCnt = $('<div></div>').addClass('date-time-completed');
             
             idCnt.html(todo._id);
@@ -77,9 +77,3 @@ var getTodos = function () {
         }
     });
 }
-
-getTodos().then(function (response, status, xhr) {
-    displayTodos(response.todos);
-}).catch(function (err) {
-    alert(err);
-});

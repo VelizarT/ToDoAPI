@@ -21,3 +21,7 @@ hr {
     background-color: #D35400;
     color: whitesmoke;
 }
+
+textarea {
+    resize: none;
+}

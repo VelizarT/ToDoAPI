@@ -1,5 +1,11 @@
 $(document).ready(function () {
 
+    getTodos().then(function (response, status, xhr) {
+        displayTodos(response.todos);
+    }).catch(function (err) {
+        alert('Oops, something went wrong.');
+    });
+
     $('#todos-edit-cnt').on('click', '.btn-edit', function (e) {
         e.preventDefault();
         e.stopPropagation();
@@ -70,11 +76,11 @@ var todoEditMode = function(todo) {
         var clock = $('<span></span>').addClass('far fa-clock');
         var completedAtDateTime = new Date(todo.completedAt);
         var completedAtDate = ' ' + completedAtDateTime.getDate() + '/' + (completedAtDateTime.getMonth() + 1) + '/' + completedAtDateTime.getFullYear();
-        var completedAtTime = ' ' + completedAtDateTime.getHours() + ':'+ completedAtDateTime.getMinutes() + ':' + completedAtDateTime.getSeconds();
+        var completedAtTime = ' ' + (+completedAtDateTime.getHours() < 10 ? '0' : '') + completedAtDateTime.getHours() + ':' + (+completedAtDateTime.getMinutes() < 10 ? '0' : '') + completedAtDateTime.getMinutes();
         var completedDateTimeCnt = $('<div></div>').addClass('date-time-completed');
         calendar.text(completedAtDate);
         clock.text(completedAtTime);
-        completedDateTimeCnt.append(completedText).append(calendar).append(' '). append(clock);
+        completedDateTimeCnt.append(completedText).append(calendar).append(' ').append(clock).append('<br>');
         
         editCnt.append(todoTitle).append('<hr>').append(todoText).append(todoId).append('<hr>').append(completedDateTimeCnt);    
     }

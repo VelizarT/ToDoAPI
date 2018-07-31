@@ -26,7 +26,8 @@
 
 .date-time-completed {
     float: right;
-    margin-right: 10%;
+    margin: auto;
+    /* margin-right: 10%; */
     padding: 0;
     color: gray;
     font-size: 13px;
@@ -42,7 +43,7 @@
     align-items: center;
     width: 90%;
     min-height: 30%;
-    margin-top: 20%;
+    margin-top: 17%;
     background-color: #FFFFFF;
     border: 1px solid #DFDFDF;
     border-radius: 3px;
@@ -50,10 +51,11 @@
 }
 
 .edit-title {
-    margin: 1%;   
+    margin-top: 3%;   
 }
 
 .edit-text {
+    min-height: 75px;
     margin: 3%;
 }
 
@@ -61,9 +63,7 @@
     margin: 3%;
     max-height: 150;
     background-color: white;
-    /* border-radius: 5px; */
     overflow: hidden;
-    /* box-shadow: 0px 0.5px 10px black; */
     align-self: flex-end;
 }
 .side-bar {
@@ -76,5 +76,4 @@
 
 hr {
     width: 100%;
-    /* border-color: gray; */
 }
