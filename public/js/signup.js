@@ -9,6 +9,7 @@ var userSignup = function (user) {
 
 $('#signup').on('submit', function (e) {
     e.preventDefault();
+    e.stopPropagation();
 
     var user = {
         email: escapeHtml($('#signup-username').val()),

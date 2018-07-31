@@ -15,6 +15,7 @@ var createTodo = function (todo) {
 
 $('#new-todo-form').on('submit', function (e) {
     e.preventDefault();
+    e.stopPropagation();
 
     var todo = {
         title: escapeHtml($('#new-todo-title').val()),
