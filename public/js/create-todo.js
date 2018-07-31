@@ -14,6 +14,7 @@ var createTodo = function (todo) {
 };
 
 $('#new-todo-form').on('submit', function (e) {
+    $('button[type=submit]').attr('disabled', true);
     e.preventDefault();
     e.stopPropagation();
 
