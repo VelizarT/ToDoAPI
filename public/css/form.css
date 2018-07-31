@@ -25,3 +25,8 @@ hr {
 textarea {
     resize: none;
 }
+
+.required:after {
+    content:" *";
+    color: red;
+}

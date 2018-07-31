@@ -24,7 +24,7 @@ $('#signup').on('submit', function (e) {
         .catch(function (err) {
             var shortPasswordError = err.responseJSON;
             if(shortPasswordError) {
-                alert(err.responseJSON.errors.password.message);
+                alert('Passord is shorter than 6 characters!');
             } else {
                 alert(err.responseText);
             }

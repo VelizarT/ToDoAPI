@@ -239,7 +239,7 @@ app.post('/users', async (req, res) => {
             res.status(400).send('Email is already registered');
         }
     } catch (err) {
-        res.status(400).send(err);
+        res.status(400).send('Username is required');
     }
 });
 
