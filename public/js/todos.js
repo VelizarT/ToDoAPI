@@ -82,7 +82,7 @@ var createCompletedCnt = function(el, todo) {
 
 var attachEditEvent = function(el, id) {
     $(el).on('click', function() {
-        $('.edit-cnt').remove();
+        $('.edit-cnt').remove('.edit-cnt');
         window.scrollTo(0, 0);
         getTodoById(id).then((response, status, xhr) => {
             todoEditMode(response.todo);
