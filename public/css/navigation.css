@@ -23,16 +23,13 @@ body {
         url('../img/notebook.jpg') center no-repeat, 
         url('../img/wood.jpg') repeat;
     background-size: cover;                      
-    /* background-repeat: no-repeat, repeat; */
     background-position: center;  
 }
 
 .wood-background {
     height: auto;
     background-image: url('../img/wood.jpg');
-    /* background-size: cover;                       */
     background-repeat: repeat;
-    /* background-position: center;  */
 }
 
 .dropdown-item {
@@ -74,3 +71,10 @@ body {
     color: darkgray; 
     font-size: 12px;
  }
+
+ /* mobile */
+ @media only screen and (max-device-width: 576px) {
+    #footer {
+        display: none;
+     }
+}

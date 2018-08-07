@@ -14,7 +14,7 @@ var UserSchema = new mongoose.Schema({
         trim: true,
         unique: true,
         validate: {
-            validator: (value) => {               //alternatively: validator: validator.isEmail will work
+            validator: (value) => {               
                 return validator.isEmail(value);
             },
             message: '{VALUE} is not a valid email'
@@ -46,9 +46,9 @@ UserSchema.methods.toJSON = function () {
     return _.pick(userObject, ['_id', 'email']);
 };
 
-//adding instance methods / like adding to the prototype
+//adding instance methods / adding to the prototype
 UserSchema.methods.generateAuthToken = function () {
-    var user = this; //arrow function do not have access to the this keyword
+    var user = this;
     var access = 'auth';
     var token = jwt.sign({_id: user._id.toHexString(), access}, process.env.JWT_SECRET).toString();
 
@@ -56,7 +56,7 @@ UserSchema.methods.generateAuthToken = function () {
     user.tokens =  user.tokens.concat([{access, token}]);
 
     return user.save().then(() => {
-        return token; //this argument will be passes to the next success call
+        return token;
     });
 };
 
@@ -68,15 +68,12 @@ UserSchema.statics.findByToken = function (token) {
     try {
         decoded = jwt.verify(token, process.env.JWT_SECRET);
     } catch (e) {
-        // return new Promise((resolve, reject) => { //if the token is invalid -->error and we return rejected promise; alternatively - Promise.reject();
-        //     reject();
-        // });
         return Promise.reject();
     }
 
     return User.findOne({
         '_id': decoded._id,
-        'tokens.token': token,    //quotes are neccessary when querying nested properties
+        'tokens.token': token,  
         'tokens.access': 'auth'
     });
 };
