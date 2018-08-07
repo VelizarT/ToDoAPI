@@ -1,5 +1,9 @@
 var token = localStorage.getItem('x-auth');
 
+if(!token) {
+    window.location.href = '/login';
+}
+
 var createTodo = function (todo) {
     return $.ajax({
         url: '/todos',

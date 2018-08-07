@@ -2,6 +2,10 @@ $('body').removeClass('notes-background').addClass('wood-background');
 
 var token = localStorage.getItem('x-auth');
 
+if(!token) {
+    window.location.href = '/login';
+}
+
 var displayTodos = function (todos) {
 
     if(todos.length > 0) {

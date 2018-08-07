@@ -1,5 +1,9 @@
 var authorizationToken = localStorage.getItem('x-auth');
 
+if(!authorizationToken) {
+    window.location.href = '/login';
+}
+
 $.ajax({
     url: '/users/me',
     type: 'GET',
